@@ -69,11 +69,19 @@ public class ATM
                     // withdraw from checkings or savings
                     if (acc == 1) {
                         // withdraw from checkings
+                        int newTotal = checking.withdrawMoney(amount);
+                        if (newTotal < 0) {
+                           System.out.println("Insufficient funds. ");
+                        }
                         System.out.println("Your savings account has " + savings.getSavingsBalance() + " credits. ");
                         System.out.println("Your checking account has " + checking.withdrawMoney(amount) + " credits. \n");
                     }
                     else {
                         // withdraw from savings
+                        double newTotal = savings.withdrawMoney(amount);
+                        if (newTotal < 0) {
+                           System.out.println("Insufficient funds. ");
+                        }
                         System.out.println("Your savings account has " + savings.withdrawMoney(amount) + " credits. ");
                         System.out.println("Your checking account has " + checking.getCheckingBalance() + " credits. \n");
                     }
@@ -111,23 +119,17 @@ public class ATM
                     done = true;
                     break;
             }
-            int totalTransactions = savingsNumTransactions + checkingNumTransactions;
+            // Get number of total transactions from accs
+            int totalTransactions = savings.getNumTransactions() + checking.getNumTransactions();
             // Every 5 transactions, add interest
-            if (totalTransactions % 5 = 0)
+            if (totalTransactions % 5 == 0)
             {
-                
+                System.out.println("Interest calculated! ");
                 savings.addInterest();
-
+                System.out.println("Your savings account has " + savings.getSavingsBalance() + " credits. ");
+                System.out.println("Your checking account has " + checking.getCheckingBalance() + " credits. ");
             }
         }
-        // Print summary of checking and savings account balance
-        // System.out.println("Your checking account has" + _____ "credits. ");
-        // System.out.println("Your savings account has" + _____ "credits. ");
-
-        // int finalNum = calc.getNumberOfOperations();
-        // System.out.println("The total amount of operations used was " + finalNum + ".");
-        
-        
         // to do: insufficient funds
     }
 

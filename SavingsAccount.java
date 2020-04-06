@@ -2,13 +2,11 @@
 
 // Keeps track of balance and interest rate
 
-// default constructor with default balance (10 credits)
-// custom constructor with user-inputed starting balance
 public class SavingsAccount
 {
 
 // Instance variables
-    private int savingsBalance;
+    private double savingsBalance;
     private int savingsNumTransactions;
 
     // default constructor with default balance (10 credits)
@@ -25,27 +23,33 @@ public class SavingsAccount
         savingsBalance = savingsUser;
     }
     // Returns the current savings balance
-    public int getSavingsBalance() {
+    public double getSavingsBalance() {
         return savingsBalance;
     }
     // Withdraw money
-    public int withdrawMoney(int amount) {
+    public double withdrawMoney(int amount) {
+        if (savingsBalance - amount < 0)
+        {
+            return -1;
+        }
         savingsNumTransactions++;
         savingsBalance -= amount;
         return savingsBalance;
     }
     // Deposit into acc
-    public int depositMoney(int amount) {
+    public double depositMoney(int amount) {
         savingsNumTransactions++;
         // return new balance
         savingsBalance += amount;
         return savingsBalance;
     }
-    // after 5 transactions, 
-    // increases the balance by an interest rate and update new balance
-    public int addInterest() {
-        
+    // Increases the balance by an interest rate (5%) and update new balance
+    public void addInterest() {
+        savingsBalance = 1.05*savingsBalance;
     }
-    
+    // Return number of transactions
+    public int getNumTransactions() {
+        return savingsNumTransactions;
+    }
     
 }

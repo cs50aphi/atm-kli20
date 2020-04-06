@@ -1,7 +1,7 @@
 // by Kate Li
 
 // Keeps track of balance
-// User can withdraw, get balance, and deposit into acc
+
 public class CheckingAccount
 {
     // Instance variables
@@ -12,14 +12,11 @@ public class CheckingAccount
     public CheckingAccount()
     {
         checkingBalance = 10;
-        // checkingNumTransactions = 0;
+        checkingNumTransactions = 0;
     }
-    // custom constructor with user-inputed starting balance
-    // public StartBalance () {
-    //     checking.
-    // }
 
     // Methods
+    
     // Changes checking balance to user input
     public void userCheckingBalance(int checkingUser) {
         checkingBalance = checkingUser;
@@ -30,17 +27,24 @@ public class CheckingAccount
     }
     // Withdraw money
     public int withdrawMoney(int amount) {
+        if (checkingBalance - amount < 0)
+        {
+            return -1;
+        }
         checkingNumTransactions++;
         checkingBalance -= amount;
         return checkingBalance;
     }
-    // Get balance
     // Deposit into acc
     public int depositMoney(int amount) {
         checkingNumTransactions++;
         // return new balance
         checkingBalance += amount;
         return checkingBalance;
+    }
+    // Return number of transactions
+    public int getNumTransactions() {
+        return checkingNumTransactions;
     }
 
 }
