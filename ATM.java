@@ -130,7 +130,6 @@ public class ATM
                 System.out.println("Your checking account has " + checking.getCheckingBalance() + " credits. ");
             }
         }
-        // to do: insufficient funds
     }
 
 
